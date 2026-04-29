@@ -49,13 +49,31 @@ public class Custom_Graph {
         }
         System.out.println();
     }
+
+    private void DFSRecursive(int curr,boolean[] visited){
+        visited[curr] = true;
+        System.out.print(curr+" ");
+        for(int neighbor:adj[curr]){
+            if(!visited[neighbor]){
+                DFSRecursive(neighbor,visited);
+            }
+        }
+    }
+    public void DFS(int startNode){
+        boolean[] visited = new boolean[V];
+        System.out.print("DFS traversal starting from "+startNode+":");
+        DFSRecursive(startNode,visited);
+        System.out.println();
+    }
     public static void main(String[] args) {
         Custom_Graph g = new Custom_Graph(5);
         g.addEdge(0,1);
-        g.addEdge(0,4);
         g.addEdge(1,2);
+        g.addEdge(1,3);
+        g.addEdge(2,4);
         g.printGraph();
 
         g.BFS(0);
+        g.DFS(0);
     }
 }
